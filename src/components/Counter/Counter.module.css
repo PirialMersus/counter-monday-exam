@@ -1,0 +1,49 @@
+.counter {
+    text-align: center;
+    border: 2px solid #20bab5;
+    border-radius: 8px;
+    height: 200px;
+    width: 300px;
+    padding: 14px;
+    background-color: #1d291d;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+
+.valueWrapper {
+    margin-bottom: 14px;
+    border: 2px solid #20bab5;
+    border-radius: 8px;
+    height: 100%;
+    vertical-align: center;
+
+}
+.valueWrapper >span{
+    line-height: 100px;
+    color: #20bab5;
+    font-weight: bold;
+    font-size: 40px;
+}
+.valueWrapper .fullCounter {
+    color: red;
+    font-weight: bolder;
+}
+
+.buttonsWrapper {
+    border: 2px solid #20bab5;
+    border-radius: 8px;
+    padding: 14px;
+}
+.incrementButton {
+    margin-right: 14px;
+}
+.message {
+    color: #20bab5;
+    font-size: 24px;
+}
+.error {
+    font-size: 24px;
+    color: red;
+}
+

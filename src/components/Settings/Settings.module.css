@@ -1,0 +1,53 @@
+.wrapper {
+    height: 200px;
+    width: 300px;
+    text-align: center;
+    border: 2px solid #20bab5;
+    border-radius: 8px;
+    padding: 14px;
+    background-color: #1d291d;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+
+.inputsBlock {
+    border: 2px solid #20bab5;
+    border-radius: 8px;
+    padding: 14px;
+    height: 100%;
+    margin-bottom: 14px;
+}
+
+.inputsBlock > div {
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    margin-bottom: 4px;
+}
+
+.inputsBlock > div > p {
+    margin: 0;
+    padding: 0;
+    color: #20bab5;
+    font-size: 22px;
+}
+
+.inputsBlock input {
+    text-align: center;
+    padding: 8px;
+    width: 50px;
+    border-radius: 4px;
+    border: none;
+    /*max-height: 10px;*/
+}
+
+.buttonWrapper {
+    border: 2px solid #20bab5;
+    border-radius: 8px;
+    padding: 14px;
+}
+.error {
+    background-color: rgb(210, 3, 34);
+}
+

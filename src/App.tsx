@@ -1,28 +1,42 @@
 import React, {useState} from 'react';
-import logo from './logo.svg';
 import './App.css';
 import Counter from './components/Counter/Counter';
+import Settings from "./components/Settings/Settings";
 
 function App() {
-    const [counter, setCounter] = useState(0)
+    const [minValue, setMinValue] = useState(0)
+    const [maxValue, setMaxValue] = useState(4)
+    const [counter, setCounter] = useState(minValue)
+    const [error, setError] = useState(
+        'Enter min and max value. Press "Set"')
+
 
     const incrementFunction = () => {
-        if (counter >= 5) {
-            setCounter(5)
+        if (counter >= maxValue) {
+            setMaxValue(maxValue)
         } else {
-            setCounter(counter + 1)
+            setCounter(prev => prev + 1)
         }
-    }
-    const resetFunction = () => {
-        setCounter(0)
     }
 
     return (
         <div className="App">
+            <Settings
+                minValue={minValue}
+                maxValue={maxValue}
+                setMinValue={setMinValue}
+                setMaxValue={setMaxValue}
+                setCounter={setCounter}
+                error={error}
+                setError={setError}
+            />
             <Counter
+                minValue={minValue}
+                maxValue={maxValue}
                 counter={counter}
+                setCounter={setCounter}
                 increment={incrementFunction}
-                reset={resetFunction}
+                error={error}
             />
         </div>
     );

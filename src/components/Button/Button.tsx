@@ -1,16 +1,18 @@
 import React from "react";
+import s from './Button.module.css'
+
 
 type PropsType = {
     name: string
-    buttonClass: string
+    buttonClass?: string
     onClickFunction: () => void
-    disabledCondition: boolean
+    disabledCondition?: boolean
 }
 
 function ButtonComponent(props: PropsType) {
     return (
         <button
-            className={`buttons ${props.buttonClass}`}
+            className={`${s.buttons} ${props.buttonClass}`}
             onClick={props.onClickFunction}
             disabled={props.disabledCondition}
         >

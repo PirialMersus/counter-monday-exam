@@ -1,36 +1,44 @@
 import React from 'react';
 import ButtonComponent from '../Button/Button';
+import s from './Counter.module.css'
 
 type PropsType = {
+    minValue: number
+    maxValue: number
     counter: number
     increment: () => void
-    reset: () => void
+    setCounter: (value: number) => void
+    error: string
 }
 
 function Counter(props: PropsType) {
 
-
+    const finalErrorMessageClass = props.error === 'Enter min and max value. Press "Set"'
+        ? s.message
+        : s.error
     return (
-        <div className="wrapper">
-            <div className="counter">
-                <div className="spanWrapper">
-                    <span className={props.counter >= 5 ? "fullCounter" : ""}>{props.counter}</span>
-                </div>
-                <div className="buttonsWrapper">
-                    <ButtonComponent
-                        name="Increment"
-                        buttonClass="incrementButton"
-                        onClickFunction={props.increment}
-                        disabledCondition={props.counter >= 5}
-                    />
-                    <ButtonComponent
-                        name="Reset"
-                        buttonClass="resetButton"
-                        onClickFunction={props.reset}
-                        disabledCondition={props.counter <= 0}
-                    />
-                </div>
-
+        <div className={s.counter}>
+            <div className={s.valueWrapper}>
+                {props.error.length > 0
+                    ? <p className={finalErrorMessageClass}>{props.error}</p>
+                    : <span className={props.counter >= props.maxValue ? `${s.fullCounter}` : ""}>{props.counter}</span>
+                }
+            </div>
+            <div className={s.buttonsWrapper}>
+                <ButtonComponent
+                    name="Increment"
+                    buttonClass={s.incrementButton}
+                    onClickFunction={props.increment}
+                    disabledCondition={props.counter >= props.maxValue
+                    || props.error.length > 0}
+                />
+                <ButtonComponent
+                    name="Reset"
+                    buttonClass="resetButton"
+                    onClickFunction={() => props.setCounter(props.minValue)}
+                    disabledCondition={props.counter <= props.minValue
+                    || props.error.length > 0}
+                />
             </div>
         </div>
     )

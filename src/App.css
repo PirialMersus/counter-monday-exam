@@ -1,51 +1,7 @@
-.wrapper {
-    margin: 0 auto;
-    background-color: #979fc4;
-    padding: 50px;
-}
-
-.counter {
-    text-align: center;
-    border: 2px solid #984ac3;
-    margin: 0 auto;
-    height: 200px;
-    width: 300px;
+.App {
     padding: 20px;
-    background-color: beige;
-}
-
-.spanWrapper {
-    margin-bottom: 30px;
-}
-.fullCounter {
-    color: red;
-}
-
-.counter span {
-    font-size: 40px;
-}
-
-.buttonsWrapper {
-    border: 2px solid #984ac3;
-    border-radius: 5px;
-    padding: 20px;
-
-}
-
-.buttons {
-    transition: all 0.3s ease;
-    cursor: pointer;
-    padding: 5px 10px;
-    background-color: #979fc4;
-    border-radius: 5px;
-    border: none;
-    font-size: 20px;
-}
-
-.buttons:hover {
-    background-color: #5264c1;
-}
-
-.incrementButton {
-    margin-right: 10px;
+    background-color: #111111;
+    height: 100vh;
+    display: flex;
+    justify-content: space-around;
 }
