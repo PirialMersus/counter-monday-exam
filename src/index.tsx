@@ -3,10 +3,19 @@ import ReactDOM from 'react-dom';
 import './index.css';
 import App from './App';
 import reportWebVitals from './reportWebVitals';
+import {StateType} from "./components/Settings/Settings";
+
+function restoreState<T>(key: string, defaultState: T) {
+    let state = defaultState
+    const stateAsString = localStorage.getItem(key)
+    if (stateAsString !== null) state = JSON.parse(stateAsString) as T
+    return state
+}
+const state: StateType = restoreState<StateType>('minMaxValues', {min: 0, max: 5})
 
 ReactDOM.render(
   <React.StrictMode>
-    <App />
+    <App state={state}/>
   </React.StrictMode>,
   document.getElementById('root')
 );

@@ -3,12 +3,20 @@ import './App.css';
 import Counter from './components/Counter/Counter';
 import Settings from "./components/Settings/Settings";
 
-function App() {
-    const [minValue, setMinValue] = useState(0)
-    const [maxValue, setMaxValue] = useState(4)
+type AppPropsType = {
+    state: {
+        min: number,
+        max: number
+    }
+}
+
+function App(props: AppPropsType) {
+    const [minValue, setMinValue] = useState(props.state.min)
+    const [maxValue, setMaxValue] = useState(props.state.max)
     const [counter, setCounter] = useState(minValue)
     const [error, setError] = useState(
         'Enter min and max value. Press "Set"')
+
 
 
     const incrementFunction = () => {

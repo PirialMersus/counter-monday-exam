@@ -12,7 +12,17 @@ type PropsType = {
     setError: (value: string) => void
 }
 
+export type StateType = {
+    min: number
+    max: number
+}
+
 function Settings(props: PropsType) {
+
+    function saveState<T>(key: string, state: T) {
+        const stateAsString = JSON.stringify(state)
+        localStorage.setItem(key, stateAsString)
+    }
 
     const onChangeMinValueHandler = (e: ChangeEvent<HTMLInputElement>) => {
         const minValue = +e.currentTarget.value
@@ -40,6 +50,7 @@ function Settings(props: PropsType) {
     const setMinMaxValue = () => {
         props.setCounter(props.minValue)
         props.setError('')
+        saveState<StateType>('minMaxValues', {min: props.minValue, max: props.maxValue})
     }
 
     const maxValueInputFinalClass = props.maxValue <= props.minValue
