@@ -8,6 +8,7 @@ type PropsType = {
     counter: number
     increment: () => void
     setCounter: (value: number) => void
+    setIsSettingsOpen: (value: boolean) => void
     error: string
 }
 
@@ -16,6 +17,7 @@ function Counter(props: PropsType) {
     const finalErrorMessageClass = props.error === 'Enter min and max value. Press "Set"'
         ? s.message
         : s.error
+
     return (
         <div className={s.counter}>
             <div className={s.valueWrapper}>
@@ -38,6 +40,13 @@ function Counter(props: PropsType) {
                     onClickFunction={() => props.setCounter(props.minValue)}
                     disabledCondition={props.counter <= props.minValue
                     || props.error.length > 0}
+                />
+                <ButtonComponent
+                    name="Set"
+                    // buttonClass="resetButton"
+                    onClickFunction={() => props.setIsSettingsOpen(true)}
+                    // disabledCondition={props.counter <= props.minValue
+                    // || props.error.length > 0}
                 />
             </div>
         </div>

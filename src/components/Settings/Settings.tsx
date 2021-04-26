@@ -5,6 +5,7 @@ import s from './Settings.module.css'
 type PropsType = {
     minValue: number
     maxValue: number
+    setIsSettingsOpen: (value: boolean) => void
     setMinValue: (value: number) => void
     setMaxValue: (value: number) => void
     setCounter: (value: number) => void
@@ -51,6 +52,7 @@ function Settings(props: PropsType) {
         props.setCounter(props.minValue)
         props.setError('')
         saveState<StateType>('minMaxValues', {min: props.minValue, max: props.maxValue})
+        props.setIsSettingsOpen(false)
     }
 
     const maxValueInputFinalClass = props.maxValue <= props.minValue

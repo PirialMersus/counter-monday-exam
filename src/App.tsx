@@ -11,12 +11,12 @@ type AppPropsType = {
 }
 
 function App(props: AppPropsType) {
+    const [isSettingsOpen, setIsSettingsOpen] = useState(false)
     const [minValue, setMinValue] = useState(props.state.min)
     const [maxValue, setMaxValue] = useState(props.state.max)
     const [counter, setCounter] = useState(minValue)
     const [error, setError] = useState(
         'Enter min and max value. Press "Set"')
-
 
 
     const incrementFunction = () => {
@@ -29,23 +29,28 @@ function App(props: AppPropsType) {
 
     return (
         <div className="App">
-            <Settings
-                minValue={minValue}
-                maxValue={maxValue}
-                setMinValue={setMinValue}
-                setMaxValue={setMaxValue}
-                setCounter={setCounter}
-                error={error}
-                setError={setError}
-            />
-            <Counter
-                minValue={minValue}
-                maxValue={maxValue}
-                counter={counter}
-                setCounter={setCounter}
-                increment={incrementFunction}
-                error={error}
-            />
+            {isSettingsOpen
+                ? <Settings
+                    setIsSettingsOpen={setIsSettingsOpen}
+                    minValue={minValue}
+                    maxValue={maxValue}
+                    setMinValue={setMinValue}
+                    setMaxValue={setMaxValue}
+                    setCounter={setCounter}
+                    error={error}
+                    setError={setError}
+                />
+                : <Counter
+                    minValue={minValue}
+                    maxValue={maxValue}
+                    counter={counter}
+                    setCounter={setCounter}
+                    setIsSettingsOpen={setIsSettingsOpen}
+                    increment={incrementFunction}
+                    error={error}
+                />}
+
+
         </div>
     );
 }
