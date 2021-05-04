@@ -1,14 +1,16 @@
 import React, {ChangeEvent} from 'react';
 import ButtonComponent from '../Button/Button';
 import s from './Settings.module.css'
+import {useDispatch} from "react-redux";
+import {addValueToCounterAC, setMaxValueAC, setMinValueAC} from '../../bll/reducers';
 
 type PropsType = {
     minValue: number
     maxValue: number
     setIsSettingsOpen: (value: boolean) => void
-    setMinValue: (value: number) => void
-    setMaxValue: (value: number) => void
-    setCounter: (value: number) => void
+    // setMinValue: (value: number) => void
+    // setMaxValue: (value: number) => void
+    // setCounter: (value: number) => void
     error: string
     setError: (value: string) => void
 }
@@ -20,10 +22,12 @@ export type StateType = {
 
 function Settings(props: PropsType) {
 
-    function saveState<T>(key: string, state: T) {
-        const stateAsString = JSON.stringify(state)
-        localStorage.setItem(key, stateAsString)
-    }
+    const dispatch = useDispatch()
+
+    // function saveState<T>(key: string, state: T) {
+    //     const stateAsString = JSON.stringify(state)
+    //     localStorage.setItem(key, stateAsString)
+    // }
 
     const onChangeMinValueHandler = (e: ChangeEvent<HTMLInputElement>) => {
         const minValue = +e.currentTarget.value
@@ -35,7 +39,7 @@ function Settings(props: PropsType) {
         else {
             props.setError('Enter min and max value. Press "Set"')
         }
-        props.setMinValue(minValue)
+        dispatch(setMinValueAC(minValue))
     }
 
     const onChangeMaxValueHandler = (e: ChangeEvent<HTMLInputElement>) => {
@@ -45,13 +49,14 @@ function Settings(props: PropsType) {
         } else {
             props.setError('Enter min and max value. Press "Set"')
         }
-        props.setMaxValue(maxValue)
+        dispatch(setMaxValueAC(maxValue))
     }
 
     const setMinMaxValue = () => {
-        props.setCounter(props.minValue)
+        // props.setCounter(props.minValue)
+        dispatch(addValueToCounterAC(props.minValue))
         props.setError('')
-        saveState<StateType>('minMaxValues', {min: props.minValue, max: props.maxValue})
+        // saveState<StateType>('minMaxValues', {min: props.minValue, max: props.maxValue})
         props.setIsSettingsOpen(false)
     }
 

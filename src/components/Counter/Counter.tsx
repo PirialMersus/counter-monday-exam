@@ -1,18 +1,21 @@
 import React from 'react';
 import ButtonComponent from '../Button/Button';
 import s from './Counter.module.css'
+import {useDispatch} from "react-redux";
+import {addValueToCounterAC} from "../../bll/reducers";
 
 type PropsType = {
     minValue: number
     maxValue: number
     counter: number
     increment: () => void
-    setCounter: (value: number) => void
+    // setCounter: (value: number) => void
     setIsSettingsOpen: (value: boolean) => void
     error: string
 }
 
 function Counter(props: PropsType) {
+    const dispatch = useDispatch()
 
     const finalErrorMessageClass = props.error === 'Enter min and max value. Press "Set"'
         ? s.message
@@ -37,7 +40,7 @@ function Counter(props: PropsType) {
                 <ButtonComponent
                     name="Reset"
                     buttonClass="resetButton"
-                    onClickFunction={() => props.setCounter(props.minValue)}
+                    onClickFunction={() => dispatch(addValueToCounterAC(props.minValue))}
                     disabledCondition={props.counter <= props.minValue
                     || props.error.length > 0}
                 />
